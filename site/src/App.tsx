@@ -1,34 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import car from "./assets/2019car.jpg"
+import logo from "./assets/logo.png"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="w-screen h-screen flex max-[800px]:flex-col overflow-hidden">
+		<div className="w-2/5 max-[800px]:w-full h-full max-[800px]:h-2/5 bg-[var(--standard-purple)] text-white">
+			<img
+				src={logo}
+				className="w-80 object-cover mt-20 mb-10 mx-auto"
+			/>
+			<div className="w-[80%] text-center mx-auto">
+				<h3>Member Portal is under construction!</h3>
+				<p>Check back soon!</p>
+			</div>
+		</div>
+		<div className="flex-1">
+			<img
+				src={car}
+				className="w-full h-full object-cover"
+			/>
+		</div>
+    </div>
+     
   )
 }
 
