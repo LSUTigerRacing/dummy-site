@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # or whatever your main branch is
+      - main
 
 permissions:
   contents: read
@@ -13,6 +13,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # This tells every 'run' step to execute inside the /site folder
+    defaults:
+      run:
+        working-directory: ./site 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,6 +27,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          # Points to the lock file inside the /site folder
+          cache-dependency-path: './site/package-lock.json'
           
       - name: Install dependencies
         run: npm install
@@ -34,7 +43,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          # Points to the build output inside the /site folder
+          path: './site/dist'
           
       - name: Deploy to GitHub Pages
         id: deployment
